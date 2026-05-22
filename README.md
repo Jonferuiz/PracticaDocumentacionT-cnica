@@ -15,3 +15,5 @@ Para ejecutar este programa, necesitas tener instalado Python en tu computadora 
 1. **Guardar el código:** Copia el código fuente y guárdalo en un archivo llamado `suma.py`.
 2. **Abrir la terminal:** Abre la terminal, consola o símbolo del sistema (CMD) y navega hasta la carpeta donde guardaste el archivo.
 3. **Ejecutar el comando:** Ejecuta el siguiente comando:
+```bash
+   python suma.py
