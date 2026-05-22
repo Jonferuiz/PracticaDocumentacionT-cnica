@@ -1,2 +1,2 @@
-# PracticaDocumentacionT-cnica
+# PracticaDocumentacionTecnica
 Es una practica de documentación técnica.
