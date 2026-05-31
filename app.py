@@ -1,31 +1,29 @@
-def obtener_numero(mensaje):
-    """
-    Pide un número al usuario y asegura que la entrada sea válida.
-    Si el usuario ingresa texto, muestra un error y vuelve a preguntar.
-    """
-    while True:
-        try:
-            # Intentamos convertir la entrada a un número decimal
-            valor = float(input(mensaje))
-            return valor
-        except ValueError:
-            # Si hay un error (ej. escriben "hola"), mostramos este mensaje
-            print("❌ Error: Entrada inválida. Por favor, ingresa un número.")
+# api_v2.py (Nueva Arquitectura)
+from pydantic import BaseModel
 
-def main():
-    """Función principal que ejecuta la lógica de la suma."""
-    print("--- Calculadora de Sumas ---")
-    
-    # Usamos la función obtener_numero para cada valor
-    numero1 = obtener_numero("Ingresa el primer número: ")
-    numero2 = obtener_numero("Ingresa el segundo número: ")
-    
-    # Realizamos la suma
-    suma = numero1 + numero2
-    
-    # Usamos f-strings (la 'f' antes de las comillas) para insertar variables directamente
-    print(f"\n✅ El resultado de sumar {numero1} y {numero2} es: {suma}")
+# Nueva estructura de respuesta requerida
+class UsuarioResponse(BaseModel):
+    usuario_id: int
+    nombre_completo: str
+    activo: bool
 
-# Esta línea asegura que el código solo se ejecute si corres este archivo directamente
-if __name__ == "__main__":
-    main()
+class UsuarioAPI:
+    def __init__(self, db_session):
+        self.db = db_session
+
+    def fetch_user(self, user_id: int) -> UsuarioResponse:
+        """
+        Obtiene los datos del usuario usando el nuevo motor de base de datos.
+        Devuelve un objeto UsuarioResponse validado.
+        """
+        # Lógica simulada con la nueva arquitectura
+        return UsuarioResponse(
+            usuario_id=user_id,
+            nombre_completo="Carlos",
+            activo=True 
+        )
+
+# Uso en v2 (Rompe la compatibilidad con v1):
+# api = UsuarioAPI(db_session=mi_conexion)
+# usuario = api.fetch_user(user_id=10)
+# print(usuario.nombre_completo) # Ya no es un diccionario, ni se llama "nombre"
